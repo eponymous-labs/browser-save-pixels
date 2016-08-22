@@ -1,9 +1,5 @@
 'use strict'
 
-var ContentStream = require('contentstream')
-var GifEncoder = require('gif-encoder')
-var jpegJs = require('jpeg-js')
-var PNG = require('pngjs-nozlib').PNG
 var ndarray = require('ndarray')
 var ops = require('ndarray-ops')
 var through = require('through')
@@ -79,50 +75,6 @@ function haderror (err) {
 module.exports = function savePixels (array, type, options) {
   options = options || {}
   switch (type.toUpperCase()) {
-    case 'JPG':
-    case '.JPG':
-    case 'JPEG':
-    case '.JPEG':
-    case 'JPE':
-    case '.JPE':
-      var width = array.shape[0]
-      var height = array.shape[1]
-      var data = new Buffer(width * height * 4)
-      data = handleData(array, data)
-      var rawImageData = {
-        data: data,
-        width: width,
-        height: height
-      }
-      var jpegImageData = jpegJs.encode(rawImageData, options.quality)
-      return new ContentStream(jpegImageData.data)
-
-    case 'GIF':
-    case '.GIF':
-      var frames = array.shape.length === 4 ? array.shape[0] : 1
-      var width = array.shape.length === 4 ? array.shape[1] : array.shape[0]
-      var height = array.shape.length === 4 ? array.shape[2] : array.shape[1]
-      var data = new Buffer(width * height * 4)
-      var gif = new GifEncoder(width, height)
-      gif.writeHeader()
-      for (var i = 0; i < frames; i++) {
-        data = handleData(array, data, i)
-        gif.addFrame(data)
-      }
-      gif.finish()
-      return gif
-
-    case 'PNG':
-    case '.PNG':
-      var png = new PNG({
-        width: array.shape[0],
-        height: array.shape[1]
-      })
-      var data = handleData(array, png.data)
-      if (typeof data === 'Error') return haderror(data)
-      png.data = data
-      return png.pack()
-
     case 'CANVAS':
       var canvas = document.createElement('canvas')
       var context = canvas.getContext('2d')
