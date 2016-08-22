@@ -1,5 +1,5 @@
 {
-  "name": "save-pixels",
+  "name": "browser-save-pixels",
   "version": "2.3.4",
   "description": "Saves an ndarray as an image to a file",
   "main": "save-pixels.js",
@@ -8,18 +8,8 @@
     "test": "test"
   },
   "dependencies": {
-    "contentstream": "^1.0.0",
-    "gif-encoder": "~0.4.1",
-    "jpeg-js": "0.0.4",
     "ndarray": "^1.0.18",
-    "ndarray-ops": "^1.2.2",
-    "pngjs-nozlib": "^1.0.0",
-    "through": "^2.3.4"
-  },
-  "devDependencies": {
-    "get-pixels": "^3.0.1",
-    "ndarray-scratch": "^1.1.1",
-    "tape": "^3.0.1"
+    "ndarray-ops": "^1.2.2"
   },
   "scripts": {
     "test": "tap test/*.js"
