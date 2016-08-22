@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "ndarray": "^1.0.18",
-    "ndarray-ops": "^1.2.2"
+    "ndarray-ops": "^1.2.2",
+    "through": "^2.3.4"
   },
   "scripts": {
     "test": "tap test/*.js"
