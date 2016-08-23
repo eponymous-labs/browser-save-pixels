@@ -1,4 +1,4 @@
-save-pixels
+browser-save-pixels
 ===========
 Saves an ndarray to an image.
 
@@ -25,7 +25,7 @@ Install
 
     npm install save-pixels
 
-### `require("save-pixels")(array, type[, options])`
+### `require("browser-save-pixels")(array, type[, options])`
 Saves an ndarray as an image with the given format
 
 * `array` is an `ndarray` of pixels.  Assumes that shape is `[width, height, channels]`
